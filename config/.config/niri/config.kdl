@@ -1,3 +1,10 @@
+//  ___                   _   
+// |_ _|_ __  _ __  _   _| |_ 
+//  | || '_ \| '_ \| | | | __|
+//  | || | | | |_) | |_| | |_ 
+// |___|_| |_| .__/ \__,_|\__|
+//           |_|  
+
 input {
     keyboard {
         xkb {
@@ -14,8 +21,19 @@ input {
     focus-follows-mouse max-scroll-amount="100%"
 }
 
+//  _                            _   
+// | |    __ _ _   _  ___  _   _| |_ 
+// | |   / _` | | | |/ _ \| | | | __|
+// | |__| (_| | |_| | (_) | |_| | |_ 
+// |_____\__,_|\__, |\___/ \__,_|\__|
+//             |___/    
+            
 layout {
-    gaps 7
+    focus-ring {
+      off
+    }
+
+    gaps 5
 
     center-focused-column "never"
 
@@ -25,9 +43,9 @@ layout {
         proportion 0.66667
     }
 
-    default-column-width { proportion 0.6; }
+    default-column-width { proportion 0.5; }
     border {
-        width 4
+        width 2
         active-color "blue"
         inactive-color "#505050"
 
@@ -36,16 +54,11 @@ layout {
     }   
 }
 
-spawn-at-startup "ags" "run" "--gtk" "4"
-spawn-at-startup "/home/hillan/dotfiles/scripts/mpvpaper.sh"
-
-hotkey-overlay {
-    skip-at-startup
-}
-
-prefer-no-csd
-
-screenshot-path "~/Pictures/Screenshots/Screenshot from %d-%m-%Y %H-%M-%S.png"
+// __        ___           _                         ____        _           
+// \ \      / (_)_ __   __| | _____      _____      |  _ \ _   _| | ___  ___ 
+ // \ \ /\ / /| | '_ \ / _` |/ _ \ \ /\ / / __|_____| |_) | | | | |/ _ \/ __|
+  // \ V  V / | | | | | (_| | (_) \ V  V /\__ \_____|  _ <| |_| | |  __/\__ \
+   // \_/\_/  |_|_| |_|\__,_|\___/ \_/\_/ |___/     |_| \_\\__,_|_|\___||___/
 
 window-rule {
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
@@ -68,6 +81,21 @@ window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
 }
+
+window-rule {
+  match is-active=true
+  opacity 0.95
+}
+
+window-rule {
+  match is-active=false
+  opacity 0.25
+}
+//  ____  _           _     
+// | __ )(_)_ __   __| |___ 
+// |  _ \| | '_ \ / _` / __|
+// | |_) | | | | | (_| \__ \
+// |____/|_|_| |_|\__,_|___/
 
 binds {
     Super+Shift+Slash { show-hotkey-overlay; }
@@ -230,3 +258,20 @@ binds {
 
     Mod+Shift+P { power-off-monitors; }
 }
+//   ___  _   _                   
+//  / _ \| |_| |__   ___ _ __ ___ 
+// | | | | __| '_ \ / _ \ '__/ __|
+// | |_| | |_| | | |  __/ |  \__ \
+// \___/ \__|_| |_|\___|_|  |___/
+
+spawn-at-startup "ags" "run" "--gtk" "4"
+spawn-at-startup "/home/hillan/dotfiles/scripts/mpvpaper.sh"
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+prefer-no-csd
+
+screenshot-path "~/Pictures/Screenshots/Screenshot from %d-%m-%Y %H-%M-%S.png"
+
