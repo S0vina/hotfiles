@@ -19,7 +19,7 @@ fi
 killall -9 mpvpaper 2>/dev/null
 
 # Opções para garantir performance e ausência de áudio
-MPV_OPTS="no-audio loop hwdec=auto"
+MPV_OPTS="no-audio loop hwdec=auto panscan=1.0"
 
 echo "Aplicando papel de parede: $WALLPAPER"
 mpvpaper -o "$MPV_OPTS" '*' "$WALLPAPER" &
