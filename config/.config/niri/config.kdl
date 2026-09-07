@@ -44,7 +44,7 @@ layout {
     border {
         on
         width 2
-        active-color "blue"
+        active-color "#b82e3b"
         inactive-color "#505050"
         urgent-color "#9b0000"
     }
