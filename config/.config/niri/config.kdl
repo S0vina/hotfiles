@@ -107,7 +107,7 @@ window-rule {
 }
 
 window-rule {
-  match app-id=r#"^(firefox|chrome|vlc|org.gnome.Nautilus)$"#
+  match app-id=r#"^(firefox|chrome|vlc|org.gnome.Nautilus|libreoffice-impress|com.yourname.wallpaper-picker)$"#
   opacity 1.0
 }
 
@@ -124,7 +124,7 @@ binds {
     Super+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Super+E hotkey-overlay-title="Run an Application: Nautilus" { spawn "nautilus";}
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
-    Super+W hotkey-overlay-title="Change the current wallpaper" { spawn "/home/hillan/dotfiles/scripts/mpvpaper.sh"; } 
+    Super+W hotkey-overlay-title="Change the current wallpaper" { spawn-sh "python /home/hillan/dotfiles/scripts/wp_selector.py"; } 
     
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
 
