@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
+from logging import NullHandler
+
 import gi
 import subprocess
+import argparse
 import sys
 import hashlib
 from pathlib import Path
@@ -11,7 +14,7 @@ gi.require_version("Gtk", "4.0")
 gi.require_version("Gdk", "4.0")
 
 WALLPAPER_DIR = Path.home() / ".config/mpvpaper"
-CACHE_DIR = Path.home() / ".cache/wallpaper-picker"
+CACHE_DIR = Path.home() / ".cache/wallpaper-picker/thumbs"
 THUMB_SIZE = 180
 SUPPORTED = {".mp4", ".mkv", ".webm", ".png", ".jpg", ".jpeg", ".gif"}
 
@@ -83,7 +86,9 @@ def apply_wallpaper(path: Path, preview=False):
     if not preview:
         # persist last selection
         last = CACHE_DIR / "last"
-        last.write_text(str(path))
+        last.write_text(str(path.resolve()))
+        print("deu certo")
+        print(path)
 
 
 class WallpaperPicker(Gtk.ApplicationWindow):
@@ -246,6 +251,7 @@ class WallpaperPicker(Gtk.ApplicationWindow):
     def _activate_child(self, child):
         wp = self._child_to_path(child)
         apply_wallpaper(wp, preview=False)
+
         self.close()
 
     def _child_to_path(self, child) -> Path:
@@ -267,5 +273,26 @@ class PickerApp(Gtk.Application):
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Wallpaper Picker")
+    parser.add_argument(
+        "--restore",
+        action="store_true",
+        help="Apllies the last wallpaper set in the last section",
+    )
+    parser.add_argument(
+        "--random",
+    )
+
+    args, gtk_args = parser.parse_known_args()
+    if args.restore:
+        last_wp = CACHE_DIR / "last"
+        if last_wp.exists():
+            wp_path = Path(last_wp.read_text().strip())
+            if wp_path.exists():
+                apply_wallpaper(wp_path)
+                sys.exit(0)
+            else:
+                sys.exit(1)
+
     app = PickerApp()
-    app.run(sys.argv)
+    app.run([sys.argv[0]])
