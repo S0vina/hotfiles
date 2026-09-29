@@ -93,6 +93,13 @@ window-rule {
 
 window-rule {
     geometry-corner-radius 2
+    clip-to-geometry true
+}
+
+window-rule {
+  background-effect {
+    blur true
+  }
 }
 
 window-rule {
