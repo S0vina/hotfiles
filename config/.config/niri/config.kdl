@@ -99,6 +99,7 @@ window-rule {
 window-rule {
   background-effect {
     blur true
+    xray false
   }
 }
 
