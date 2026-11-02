@@ -28,7 +28,7 @@ input {
 //             |___/    
             
 layout {
-    gaps 2
+    gaps 7
 
     center-focused-column "never"
 
@@ -38,7 +38,8 @@ layout {
         proportion 0.66667
     }
 
-    default-column-width { proportion 0.5; }
+      default-column-width { proportion 0.5; }
+      
 
     border {
         on
@@ -132,6 +133,7 @@ binds {
     Super+E hotkey-overlay-title="Run an Application: Nautilus" { spawn "nautilus";}
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
     Super+W hotkey-overlay-title="Change the current wallpaper" { spawn-sh "python /home/hillan/dotfiles/scripts/wp_selector.py"; } 
+    Super+I hotkey-overlay-title="Open cliphist" { spawn "sh" "-c" "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"; }
     
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
 
@@ -266,6 +268,9 @@ binds {
 
 spawn-at-startup "ags" "run" "--gtk" "4"
 spawn-at-startup "python /home/hillan/dotfiles/scripts/wp_selector.py" "--restore";
+spawn-at-startup "sh" "-c" "wl-paste --type text --watch cliphist store"
+spawn-at-startup "sh" "-c" "wl-paste --type image --watch cliphist store"
+spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP" "GDK_BACKEND"
 
 hotkey-overlay {
     skip-at-startup
